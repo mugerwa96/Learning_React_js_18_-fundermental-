@@ -14,6 +14,7 @@ const Effect = () => {
         .then((response)=>{
          setUsers(response.data)
         })
+        .catch((error)=>console.log(error))
     }
     
    useEffect(()=>{

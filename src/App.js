@@ -6,11 +6,17 @@ import Product from "./components/Product";
 import FormD from "./components/FormData";
 import Effect from './components/Effect';
 import Reducer from './components/Reducer';
+import Context from './components/useContext';
+import {Provider} from 'react-redux'
+import store from './store/store';
 
 export default function App() {
+ 
   return(
-    <>
-      
+
+    <> 
+    <Provider store={store} >
+
       <BrowserRouter>
       <NavBar/>
 
@@ -22,9 +28,14 @@ export default function App() {
         <Route path='/form' element={<FormD/>}/>
         <Route path='/useEffect' element={<Effect/>}/>
         <Route path='/useReducer' element={<Reducer/>}/>
+        <Route path='/useContext' element={<Context/>}/> 
+
       </Routes>
      </div>
      </BrowserRouter> 
+     
+    </Provider>
+ 
 
     </>
   )

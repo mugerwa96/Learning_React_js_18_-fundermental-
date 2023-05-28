@@ -1,8 +1,11 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import  image1 from '../image/bananas.png';
 import  image2 from '../image/coco.png';
+import { useDispatch } from 'react-redux';
+import { add } from '../store/cartSlice';
 const Product = () => {
+const dispatch= useDispatch()
     const [products, setProducts] = useState([
         {
             id:1,
@@ -25,17 +28,12 @@ const Product = () => {
     
     ]);
 
-    // useEffect(() => {
-    //     axios.get('https://dummyjson.com/products')
-    //         .then((response) => {
-    //             setProducts(response.data.products);
-    //         })
-    //         .catch((error) => {
-    //             console.log('Error in fetching data using axios')
-    //         })
-    // }, [])
+    const addToCart=(product)=>{
+      dispatch(add(product))
+    }
     return (
         <div>
+            {/* <h1 className='text-center text-3xl mx-auto font-bold text-slate-800'>Hello {userName}</h1> */}
             <p className='font-bold text-xl'>Product</p>
             <div className='grid mx-auto md:grid-cols-2 gap-2 w-full'>
                 {
@@ -51,7 +49,7 @@ const Product = () => {
                                 <p><small className='font-bold'>Name:</small> <br />    {product.title}</p>
                                 <p><small className='font-bold'>Product Description</small><br />:{product.description}</p>
                                 <p><small className='font-bold'>Price</small>:${product.price}</p>
-                                <button className='p-2 bg-slate-700 font-bold rounded text-xs text-white'>Add 2 Cart</button>
+                                <button className='p-2 bg-slate-700 font-bold rounded text-xs text-white' onClick={()=>addToCart(product)}>Add 2 Cart</button>
                             </div>
                         </div>
 
